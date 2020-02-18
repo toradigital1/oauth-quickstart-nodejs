@@ -195,17 +195,28 @@ const displayContactName = (res, contact) => {
   res.write(`<p>Contact name: ${firstname.value} ${lastname.value}</p>`);
 };
 
-app.get('/', async (req, res) => {
+app.get('/', async (req, res) => 
+{
   res.setHeader('Content-Type', 'text/html');
   res.write(`<h2>HubSpot OAuth 2.0 Quickstart App</h2>`);
-  if (isAuthorized(req.sessionID)) {
+  if (isAuthorized(req.sessionID)) 
+  {
     const accessToken = await getAccessToken(req.sessionID);
     const contact = await getContact(accessToken);
     res.write(`<h4>Access token: ${accessToken}</h4>`);
+    
     displayContactName(res, contact);
-  } else {
+    res.write(`<h4>Hello Access token: ${accessToken}</h4>`);
+    
+
+  } 
+  else 
+  {
     res.write(`<a href="/install"><h3>Install the app</h3></a>`);
   }
+
+
+
   res.end();
 });
 
